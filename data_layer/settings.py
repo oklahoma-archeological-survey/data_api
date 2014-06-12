@@ -8,8 +8,11 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
+from data_layer.config import host, username, password
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -36,6 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_app',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -51,6 +56,22 @@ ROOT_URLCONF = 'data_layer.urls'
 
 WSGI_APPLICATION = 'data_layer.wsgi.application'
 
+REST_FRAMEWORK = {
+    # Use hyperlinked styles by default.
+    # Only used if the `serializer_class` attribute is not set on a view.
+    'DEFAULT_MODEL_SERIALIZER_CLASS':
+        'rest_framework.serializers.HyperlinkedModelSerializer',
+
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ],
+    'PAGINATE_BY': 1000,
+    'PAGINATE_BY_PARAM': 'page_size',
+    'MAX_PAGINATE_BY': 10000
+
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
@@ -59,6 +80,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    },
+    'dokarrs': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': host,
+        'NAME': 'srchdb',
+        'USER': username,
+        'PASSWORD': password,
     }
 }
 
