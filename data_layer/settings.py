@@ -29,6 +29,12 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', # default
+    'guardian.backends.ObjectPermissionBackend',
+)
+
+ANONYMOUS_USER_ID = -1
 
 # Application definition
 
@@ -40,7 +46,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'rest_app',
+    'dokarrs_app',
+    'south',
+    'guardian',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -67,9 +75,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
-    'PAGINATE_BY': 1000,
+    'PAGINATE_BY': 50,
     'PAGINATE_BY_PARAM': 'page_size',
-    'MAX_PAGINATE_BY': 10000
+    'MAX_PAGINATE_BY': 1000
 
 }
 

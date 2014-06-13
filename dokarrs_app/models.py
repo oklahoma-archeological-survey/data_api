@@ -34,4 +34,5 @@ class Dokarrs(models.Model):
     class Meta:
         managed = False
         db_table = 'dokarrs'
+        permissions =(("view_task","Can see available tasks"),)
 
