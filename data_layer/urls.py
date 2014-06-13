@@ -4,7 +4,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 from rest_framework import routers
-from rest_app.views import DokarrsViewSet
+from dokarrs_app.views import DokarrsViewSet
 router = routers.DefaultRouter()
 router.register('dokarrs',DokarrsViewSet)
 
