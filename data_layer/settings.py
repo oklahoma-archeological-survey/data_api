@@ -75,7 +75,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
-    'PAGINATE_BY': 50,
+    'PAGINATE_BY': 25,
     'PAGINATE_BY_PARAM': 'page_size',
     'MAX_PAGINATE_BY': 1000
 
@@ -115,4 +115,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-STATIC_URL = '/static/'
+if os.uname()[1] == 'test.cybercommons.org':
+    STATIC_URL = 'http://static.cybercommons.org/media/django_admin/media/'
+else:
+    STATIC_URL = '/static/'
