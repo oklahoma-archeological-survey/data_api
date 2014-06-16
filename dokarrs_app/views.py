@@ -5,9 +5,11 @@ from rest_framework import viewsets, filters
 
 from models import Dokarrs
 from serializer import DokarrsSerializer, DokarrsFilter
+from rest_framework.renderers import JSONRenderer, YAMLRenderer, JSONPRenderer,BrowsableAPIRenderer
 
 class DokarrsViewSet(viewsets.ModelViewSet):
 
+    renderer_classes = (BrowsableAPIRenderer, JSONRenderer, YAMLRenderer,JSONPRenderer)
     queryset = Dokarrs.objects.using('dokarrs').all()
     serializer_class = DokarrsSerializer
     filter_backends = (filters.DjangoFilterBackend,filters.SearchFilter,)
