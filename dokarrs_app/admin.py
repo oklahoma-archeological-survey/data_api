@@ -34,7 +34,7 @@ class DokarrsAdmin(MultiDBModelAdmin):
     list_display = ('obsnum', 'class_field', 'family', 'genus',
                   'species', 'common_name', 'county', 'local', 'obsvr',
                   'day', 'month', 'year', 'number', 'habitat', 'remarks',
-                  'museum', 'citatin', 'timestamp')
+                  'timestamp')
     #ordering = ('-timestamp',)
     #date_hierarchy = 'timestamp'
 
