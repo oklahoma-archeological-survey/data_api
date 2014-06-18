@@ -10,10 +10,13 @@ from rest_framework.renderers import JSONRenderer, YAMLRenderer, JSONPRenderer, 
 
 class DokarrsViewSet(viewsets.ModelViewSet):
     #renderer_classes = (BrowsableAPIRenderer, JSONRenderer, JSONPRenderer, YAMLRenderer)
-    queryset = Dokarrs.objects.using('dokarrs').all()
+    queryset = Dokarrs.objects.using('dokarrs').all() #.exclude(obsnum='') #all()
     serializer_class = DokarrsSerializer
-    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,)
+    filter_backends = (filters.DjangoFilterBackend, filters.SearchFilter,filters.OrderingFilter)
     filter_class = DokarrsFilter
     search_fields = ('genus', 'species', 'common_name', 'county', 'local', 'obsvr',
                      'month', 'year', 'class_field', 'day', 'remarks', 'citatin', 'family',
                      'obsnum', 'number', 'habitat', 'museum',)
+    ordering_fields = ('genus', 'species', 'common_name', 'county', 'local', 'obsvr',
+                     'month', 'year', 'class_field', 'day', 'remarks', 'citatin', 'family',
+                     'obsnum', 'number', 'habitat', 'museum','timestamp')
