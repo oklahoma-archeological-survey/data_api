@@ -82,12 +82,13 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONPRenderer',
         'rest_framework.renderers.XMLRenderer',
         'rest_framework.renderers.YAMLRenderer',
+        'data_layer.pagination.PaginatedCSVRenderer',
 
     ),
     #Pagination settings
     'PAGINATE_BY': 25,
     'PAGINATE_BY_PARAM': 'page_size',
-    'MAX_PAGINATE_BY': 1000
+    'MAX_PAGINATE_BY': 1000000
 
 }
 
@@ -125,7 +126,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
-if os.uname()[1] == 'test.cybercommons.org':
-    STATIC_URL = 'http://static.cybercommons.org/media/django_admin/media/'
-else:
-    STATIC_URL = '/static/'
+#if os.uname()[1] == 'test.cybercommons.org':
+#    STATIC_URL = 'http://static.cybercommons.org/media/django_admin/media/'
+#else:
+STATIC_URL = '/static/'
