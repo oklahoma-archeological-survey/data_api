@@ -50,6 +50,8 @@ class DokarrsFilter(django_filters.FilterSet):
     obsnum = django_filters.CharFilter(lookup_type='icontains')
     min_date = django_filters.DateFilter(name='timestamp', lookup_type='gte')
     max_date = django_filters.DateFilter(name='timestamp', lookup_type='lte')
+    min_year = django_filters.CharFilter(name='year',lookup_type='gte')
+    max_year = django_filters.CharFilter(name='year',lookup_type='lte')
 
     class Meta:
         model = Dokarrs
