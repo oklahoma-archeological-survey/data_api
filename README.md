@@ -1,7 +1,7 @@
 Data_API
 ========
 
-Django Restful api layer for OBS web data access.
+Django Restful api layer for OAS web data access.
 
 ### Python Environment Install
 <pre><code>$ easy_install pip <br>
