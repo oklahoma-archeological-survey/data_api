@@ -8,7 +8,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
 
-from data_layer.config import host, username, password
+from data_layer.config import host, username, password, secret_key
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'd+r=@n7da7ivi0i#6^xfluxvh-kh10)2m@%@+ylia!=jhku_v-'
+SECRET_KEY = secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -46,9 +46,12 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'dokarrs_app',
+    #'dokarrs_app',
     'south',
     'guardian',
+    'rest_framework.authtoken',
+    'oas_doe',
+    #'rest_framework_swagger',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -104,6 +107,13 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'HOST': host,
         'NAME': 'srchdb',
+        'USER': username,
+        'PASSWORD': password,
+    },
+    'doe': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': host,
+        'NAME': 'doe',
         'USER': username,
         'PASSWORD': password,
     }
